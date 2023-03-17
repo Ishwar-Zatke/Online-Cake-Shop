@@ -1,0 +1,64 @@
+
+<section class="home" id="home">
+    <div class="content">
+      <h3>Every <span>Batch</span> from Scratch</h3>
+      <p>Sweet apple pie chocolate cake. Macaroon liquorice sweet. Red velvet with Strawberry-cum-cheese cake</p>
+      <p style="color: black; font-size: 2.8rem; font-weight: bolder;"><i>A Little Bliss in Every Bite</i></p>
+      <a href="#menu" class="btn-primary">Try Our Cupcakes</a>
+    </div>
+  </section>
+  <section class="menu container px-24 py-8" id="menu">
+    <h1 class="heading"><span>Our Products</span></h1>
+    <div class=" product-section grid grid-cols-1 md:grids-cols-2 lg:grid-cols-3  col-gap-6 row-gap-8 pl-24 pr-24">
+        <% cupcakes.forEach(function(cupcake) { %>
+            <div class="product w-full md:w-64 ">
+                <img class="h-40 mb-4 mx-auto" src="/img/<%= cupcake.image %>" alt="">
+                <div class="text-center">
+                    <h2 class="mb-4 text-lg"><%= cupcake.name %></h2>
+                    <span class="category py-1 px-4 rounded-full uppercase text-xs"><%= cupcake.size %></span>
+                    <div class="flex items-center justify-around mt-6">
+                        <span class="font-bold text-lg">₹<%= cupcake.price %></span>
+                        <button data-cupcake="<%= JSON.stringify(cupcake) %>"
+                          class="add-to-cart py-1 px-6 rounded-full flex items-center font-bold">
+                          <span>+</span>
+                          <span class="ml-4">Add</span>
+                      </button>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+    
+  </section>
+  <section class="footer px-24">
+    <div class="box-container">
+      <div class="box">
+        <h3><i class='fas fa-birthday-cake'></i> Cakery</h3>
+        <p> A touch away from your hand. Just order delicious and sweet cupcakes. Implementing Happiness</p>
+        <div class="share">
+          <a href="/" class="fab fa-facebook-f"></a>
+          <a href="/" class="fab fa-twitter"></a>
+          <a href="/" class="fab fa-instagram"></a>
+          <a href="/" class="fab fa-linkedin"></a>
+        </div>
+      </div>
+  
+      <div class="box">
+        <h3>contact info</h3>
+        <a href="/" class="links"><i class="fas fa-phone"></i> +91 8999546241</a>
+        <a href="/" class="links"><i class="fas fa-envelope"></i> ishwarzatke@gmail.com</a>
+        <a href="/" class="links"><i class="fas fa-map-marker-alt"></i> Jalgaon, Maharashtra - 425305</a>
+      </div>
+  
+      <div class="box">
+        <h3>quick links</h3>
+        <a href="/" class="links"><i class="fas fa-arrow-right"></i> Home</a>
+        <a href="#menu" class="links"><i class="fas fa-arrow-right"></i> Products</a>
+        <a href="/register" class="links"><i class="fas fa-arrow-right"></i> Register</a>
+      </div>
+    </div>
+  </section>
+  
+  
+  
+  
