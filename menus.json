@@ -1,0 +1,49 @@
+[{
+  "_id": {
+    "$oid": "5eee651f739f8c674fd736ee"
+  },
+  "name": "Resberry velvet cupcake",
+  "image": "Product1-Rasberry.jpg",
+  "price": "250",
+  "size": "Velvet Coverings"
+},{
+  "_id": {
+    "$oid": "5eee6671a27a66807cf2bea3"
+  },
+  "name": "Chololate Blackout",
+  "image": "Product2.Chocolate Blackout Cupcake.jpg",
+  "price": "300",
+  "size": "Chocolate"
+},{
+  "_id": {
+    "$oid": "5eee6692a27a66807cf2bea4"
+  },
+  "name": "Strawberry-cum- Cheeze",
+  "image": "Product3-Strawberry Cheesecake.jpg",
+  "price": "200",
+  "size": "Cheeze"
+},{
+  "_id": {
+    "$oid": "5eee66a5a27a66807cf2bea5"
+  },
+  "name": "Dark Red Velvet",
+  "image": "Product4-Red Velvet cupcake.jpg",
+  "price": "500",
+  "size": "Velvet Coverings"
+},{
+  "_id": {
+    "$oid": "5eee66c4a27a66807cf2bea6"
+  },
+  "name": "Cheeze Cupcake",
+  "image": "Product5-Cheeze cupcake.jpg",
+  "price": "350",
+  "size": "Cheeze"
+},{
+  "_id": {
+    "$oid": "5eee66cfa27a66807cf2bea7"
+  },
+  "name": "Vanilla Cupcake",
+  "image": "Product6-Vanilla Cupcake.jpg",
+  "price": "200",
+  "size": "Vanilla"
+}]

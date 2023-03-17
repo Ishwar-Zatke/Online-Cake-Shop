@@ -1,0 +1,205 @@
+1. Create directory
+
+2. Create a NPM project and install all dependencies
+-express
+-ejs express-ejs-layouts
+
+-Dev dependencies:
+ - Nodemon //so that we can restart the server without manually
+
+DONE WITH FILE STRUCTURE:
+3. Create Express server
+
+//Cannot get/- isko correct karneko route dena padega
+get request se. in server.js
+ 
+ Ejs is used as variables from server is embedded in HTML using ejs
+ import that ejs templates for view engine
+
+
+4. Git Repo
+ -4.1 git --version
+ -4.2 git init - generates gitignore file 
+ -4.3 Make .gitignore in routes where name the files you don't wanna add in the repo
+ -4.4 git status -gives the files in folder
+ -4.5 git add . - add the files in repo
+ -4.6 git commit -m "initial commit" -- commit and stores it in git repo, go out of staging area
+
+5. Install Laravel Mix:
+An elegant wrapper around webpack( use modern js, module system)
+It stores that saas, and all in public 
+-npm install laravel-mix --save-dev
+-cp node_modules/laravel -mix/setup/webpack.mix.js  //Config ke file se copy karega and webpack .mix .js aayega
+-Laravel mix copies to public folder
+--Add Scripts
+-Script mix waali daalna, and sass ka spelling dekhna for installing particular dependencies
+--Thus you connected to public
+
+6. Install tailwind (We will use NPM , yarn gaya bhaad mein, hehe...)
+- then add CDN of tailwind in head tag in home padega
+- add link for css file in css folder in public
+-SImilarly add js file from js folder in public
+-We added google lato fonts that is their links in the page 
+- Now just add assets in Server.js as to show the static folder is nothing but public so the changes transferred using Laravel mix would be applied 
+-The code goes like ----- app.use(express.static('public'))
+
+7.SCSS from tailwind
+-7.1 _variables for not main file.
+-7.2 You can add css in class itself for tailwind css (px left right padding-4:1rem types // my margin tob bottem mx-4)
+-7.3 hover using &
+-7.4 Transitions apply in variables
+-7.5 color changes of background/ rounded-full for cart and color changes on hover
+
+8. Home Title page
+-Make a section her
+-me a wrapper div
+-make two div first for tag line and other for pizza image
+-add button for order now over there and add css to it for overing and border-radius 
+-add flex display in the wrapper making padding and margin setting
+-make font as bold
+-add background color of home section as Secondary
+
+9. Products Menu
+-make a section giving padding
+- make a div container in which wrapper for all products would be there(It would be data flown later when database will be added)
+- Make a div wrapper and -- add image , --- and a div wrapper again
+---in that div wrapper you would have --heading, --span for size --another div having a span for money and button to add to cart
+-All properties of flex and all are added in both wrappers
+--Original div just after the section , make its display grid and grid col , col and row gap
+-Thus duplicate the product wrapper and add the products available(will be made data driven later)
+
+10. Cart section / Login section / Register section
+-Now what you wanna have is like you want to have navigation bar in all paged so for that we chosed ejs express's layouts
+-Create layout.ejs in vies and gheir add all html code having navbar codeafter that have <%-body %> code 
+-Then all app.get request we will after templeta engine setup in server.js
+- Now you want to have empty and filled cart pages
+- Make customers folder in views give get request for files in that folder
+-10.1 You want to make a empty cart div and then make 
+-10.2 Where you have heading, para, img for empty cart and button for going back since card is empty
+-If cart is not empty Then
+-10.3 First make a div inside a div
+-10.4 have cart logo and order summary written on it
+-10.5 Make a div having pizza lis inside have div for pizza package there you have image name and size of pizza with pieces and price
+then make an line using hero-10.6 make a div having a span for amount and another for amount value
+-10.6 Just link /cart for cart image on layout template
+-10.7 make an form having two input parameter and a button for order now
+-10.8 make an anchor tag again as button for login to register or order if customer is not loged in
+
+11. Move routes to routes folder
+-11.1 In routes web.js folder make an function initRoute and copy paste all routes path to the function
+-11.2 Use module.export to export the function.
+-11.3 Call that function in server.js assigning the parameter as instance of the express objext
+(You know javascript uses the instance parameter using by reference call in the function)
+
+Why use controllers:
+You create post route also for registration and now, the logic code written is so big. Thus, you need to shift that to controllers [in app->http->controlles]
+
+12. controllers
+-12.1 Make homeController.js in controllers for the logic and make a function called as homeController
+-12.2 In that use factory function which returns an object which serves as function, {good method to name index}.
+This is the function which would take request as respond as paremeter and can return render or logic return
+-12.3 import that homeController.js in web.js (which is request file) where using writing app.get('path',homeController.index)
+Thus the controllers work
+-12.4 Make authController for authentication purpose routes also now and work Similarly
+-12.5 Make customer folder where acartController for cart controlling purpose routes also now and work Similarly
+
+13. database
+-13.1 Download mongob compass and connect it
+-13.2 Make a db named as pizza and collection of menus over there
+-13.3 Import the menus.json file in root folder there 
+-13.4 Install mongoose and conect the database in server.js file
+
+14. Connecting Menu 
+-14.1 Make a menu.js model in model in app
+-14.2 Import mongoose and take schema method of mongoose in avariable over there
+-14.3 Create an instance of schema having the keys of the database
+-14.4 use .model to model that in Menu and export it.
+-14.5 Come to home.ejs and make forEach loop using function to pass the data
+-14.6 <%= [function's_parameter.key_name] %> to change data dynamically
+-14.7 So for only one div , you got all the pizzas available in the database
+
+15. Creating Sessions
+-15.1 Install Sessions
+-15.2 use session config part for sessions then install dotenv for cookie secret key_name
+-15.3 Make .env file in root folder and keep that secret cookie key over their
+-15.4 Install Flash and use flash and install connrct-mongo to store sessions in database
+-15.5 Use connection to connect that session in newly made collection
+
+16. Add to Cart
+-16.1 Start with app.js for making an var addToCart for .add-to-cart class
+-16.2 add foreach for all add button and add event listener to that
+-16.3 In button in home page make data object as string that is stringify that 
+-16.4 Then while importing that make that string to an object now
+-16.6 Install axios
+-16.7 make a cartConter qurey selector from id cartCounter which is id of element before img of cart logo
+-16.8 Using axios for cartcounter for innertext as taking res.data.totalQty
+-16.9 In server.js add global middleware taking req,res,next as input and return res.locals.session=req.session
+-16.10 Add next() callback as the refresh would happen then further process begins
+-16.11 In layout.ejs add to id carcounter, <%=session.cart ? session.cart.totalQty : ''%> which says if session.cart is there then show totalQty otherwise empty screen
+-16.12 Now make cart.ejs page dynamic using for of loop there converting items object to array
+-16.13 Now make if else loop for if cart empty then show empty cart page
+
+17. Registration auth
+-17.1 In models make user.js collection there and add schema respectively
+-17.2 Then in authController add postRegister which consist of property import as req.body
+-17.3 Make an if statement that if not the properties then says all fields are required
+-17.4 Then you have imported the model here and also makes user.exist where check if email is already there or not.\
+-17.5 Then install bcrypt library to hash the password while storing as documents in the collection
+-17.6 then just make a constructor to pass the properties, then .save.then return redirecting to home page and catch error
+-17.7 Hope you have printed the registration on console too and given the Assets thats pass url as urlencoded also and also made the registration.ejs dynamic also
+
+18. Login auth
+-18.1 Install passport and passport-local which uses email as username for login
+-18.2 Make passport.js in config in app
+-18.3 import passport-local, user from model, bcrypt
+-18.4 function which has function passport.use having constructor of passport-local
+-18.5 In that user se take email as username, check if not user send message,if match of password logged in succesfully or went wrong
+-18.6 Now passport.serializeUser is used to identify from id then deserializeUser and find id and catch the error
+-18.7 Now in server.js in Global Middleware make res.locals.user = req.user
+-18.8 Make  passport config where you initialize passort and make session
+-18.9 Place this passport config after session config
+
+19. Logout auth
+-19.1 In layout make an if(user) loop and put ther a form of id logout having a tag as Logout
+-19.2 Form action is /logout and method is post ther make onclick attribute of a tag as getelementby Id as logout . submit()
+-19.3 Put else to if loop and but register and login a tag there
+-19.4 In web.js make a route as of logout having logout function from auth controller, make the method post.
+-19.5 In authcontroller, make logout fun. having req.logout(), and redirecting to login
+
+20. Order 
+-20.1 Create a model as order.js in models in app
+-20.2 Make customer id and connect to the users schema and items refer to the object that is pizza plaaced
+-20.3 Then have phone no, address, payment type default COD, status default placed and attach timestamp and export the module
+-20.4 Make an order controller where return store which have if phone or address not valid put error and make order as constructore or model and req there the id
+-20.5 Then save the order and then display message order placed or error something went wrong and export the orderController too.
+-20.6 Give the route in web.js using post method while importing ordercontroller.store us used.
+-20.7 In cart.ejs template for phone and addess you would have given the form an action as /orders and method post
+-20.8 Make order.ejs in customers in views and a setion having div wrapper there an h1 tag for all orders theb, an div for message then an table
+-20.9 Create the table of column as orders, address and time, and apply style to it.
+-20.10 There make if loop chaecking for orders.length that imeans orders then if present loop the data of orders dynamically using for each loop, and else no order
+-20.11 Install moment for time structure in orders. Import library in ordercontroller, 
+-20.12 Just pass that moment as order key was passes, then in time data make moment(orders.createdAt).format("hh:mm A") 
+
+21. Admin
+-21.1 Create admin.js in admin folder in views where you keep admin related stuff
+-21.2 Create order controller for admin in admin folder, then order.ejs for admin is also created where data is passed from admin.js in resources
+-21.3 Now you know what to do and all becoz error hi itne aaye, hehe...
+
+22. Updating order status
+-22.1 For that Create an statusController in admin and then give their function and export the function having return object as update
+-22.2 In web.js file import the statusController and use post method to route it to admin/orders/status
+-22.3 Again in update object in controller which uses updateOne method taking id , status, afunction showing if error then redirect to admin/order page
+
+23. SIngleOrder Page- Track of orders
+-23.1 Make a link for single order of link /customer/orders/:id that passes id as dynamic and controller kept it as orderController in show object having an middleware as auth
+-23.2 In show object first of all make an order as Orders.findById where req.params.id is passed
+-23.3 There make an condition that string form of req.user._id is= order.customerId then render customers/singleOrder otherwise redirect to home
+-23.4 Put scss for the page and make the singl.ejs where pass ther order._id dynamically
+-23.5 Now we would make the dynamic 0rder status changing, for that we would add step-completed for completed status and current for current status in execution, we would make that dynamic using js in app.js
+-23.6 There we would create statuses selection all li tag using id then an hiddenInput slection hiddenInput which convert data to string by JSON stringify
+-23.7 Then making order as take hiddenInput or value qould be null, now parse the JSON order to convert them into objects
+-23.8 Make updateStatus taking order where you make a loop for statuses where an variable dataProp would take status from dataset which was passed in the attribute data in singleOrder.ejs
+-23.9 If step completed then add step-completed class, and id dataprop is equal to order.status then make stepCompleted as true, and in that add claas current using nextElementSibling of step-completed class element which is checked first that nextSibling is available
+-23.10 Make time availability by creating varialble time as createElement('small,) which is added using innerText using moent ansd status.appendChild() is made after that, Thus then updateStatus function is called.
+
+
